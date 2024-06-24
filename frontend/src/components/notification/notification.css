@@ -1,0 +1,27 @@
+.notification{
+  width: 100%;
+  position: fixed;
+  height: 10%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background-color:  var(--green-color);
+  color: black; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: all 0.5s ease;
+
+}
+
+.red{
+ background-color: var(--red-color) !important;
+ color: white;
+ transition: all 0.5s ease;
+}
+.closed{
+  height: 0 !important;
+  opacity: 0 !important;
+  transition: all 0.5s ease;
+}

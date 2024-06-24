@@ -1,0 +1,19 @@
+.events-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+
+  margin: 2% 15%;
+  
+}
+.event-section{
+  flex-direction: column;
+  }
+.events-container{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+}

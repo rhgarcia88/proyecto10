@@ -1,0 +1,71 @@
+.user-profile{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 5% 5% 5% 5%;
+  gap: 10%;
+
+}
+
+.user{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+.profile-picture{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+ 
+}
+
+.profile-picture img{
+  width: 100%;
+  object-fit: cover;
+  display: flex;
+  border-radius: 100em;
+}
+
+.events{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+.events>div{
+display: flex;
+flex-direction: column;
+width: 100%;
+
+}
+.events>div>h2{
+text-align: start;
+}
+
+.cards-container {
+  overflow-x: auto; /* Desplazamiento horizontal */
+  overflow-y: hidden; /* Evitar desplazamiento vertical */
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  height: 100%; /* Ocupa toda la altura del contenedor padre */
+}
+.cards-container>div{
+  min-height: 100px;
+  width: 40%;
+  min-width: 250px;
+}
+
+@media screen and (max-width: 768px){
+  .user-profile{
+
+    justify-content: space-between;
+flex-direction: column;
+  
+  }
+}

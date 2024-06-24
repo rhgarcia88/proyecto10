@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
+
+:root {
+  font-family: 'Jockey One';
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #232323;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --black-color: #000000;
+  --dark-black-color: #2b2b2b;
+  --red-color: #FC3943;
+  --white-color: #FFFFFF;
+  --green-color: #72C04E;
+
+  box-sizing: border-box; 
+  padding: 0;
+  margin: 0;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  flex-wrap: wrap;
+
+}
+
+#app {
+  width: 100%;
+  margin: 0% 0 10% 0;
+  text-align: center;
+}
+
+.screen-container {
+  display: flex;
+  width: 100%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+footer{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: var(--red-color);
+  height: 10%;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+    padding: 1%;
+    position: sticky;
+    top: 100vh; /* Mantiene el footer pegado al fondo */
+    margin-top: 5%;
+    width: 100%;
+
+    -webkit-box-shadow: 0px 15px 22px -6px rgba(0,0,0,0.6);
+    -moz-box-shadow: 0px 15px 22px -6px rgba(0,0,0,0.6);
+    box-shadow: 0px 15px 22px -6px rgba(0,0,0,0.6);
+}
+
+footer a {
+  text-decoration: none;
+  color: #000;
+}
+
+@media screen and (max-width: 550px) {
+  footer {
+    font-size: 3vw;
+    margin-top: 15%;
+  }
+
+}
+
+@media screen and (min-width: 550px) {
+  footer{
+    font-size: 1.2vw;
+  }
+
+  
+}

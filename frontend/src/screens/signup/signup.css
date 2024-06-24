@@ -1,0 +1,79 @@
+.register-screen{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 2%;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: var(--dark-black-color);
+}
+.register-button{
+  width: 15vw;
+  outline: none;
+  margin-top: 1%;
+}
+
+.register-screen h2 {
+  font-size: 3vw;
+  margin: 0;
+}
+
+.login-link{
+  cursor: pointer;
+  color: var(--red-color);
+}
+#profile-pic{
+  display: none;
+}
+
+
+/* Estilo para el contenedor del input file */
+.file-upload-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo para el botón personalizado */
+.custom-file-upload {
+  display: flex;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 2em;
+  font-size: 1vw;
+  border: 1px solid #4CAF50;
+  margin-top: 1%;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Estilo al pasar el mouse sobre el botón */
+.custom-file-upload:hover {
+  background-color: #45a049;
+  color: #fff;
+  border: 1px solid #45a049;
+}
+
+.file-name {
+  margin: 1% 0 0 10px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 768px){
+  .custom-file-upload {
+    padding: 5px 10px;
+    font-size: 2.2vw;
+
+  }
+  .register-screen h2 {
+    font-size: 6vw;
+  }
+
+
+}

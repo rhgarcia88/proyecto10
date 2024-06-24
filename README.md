@@ -1,0 +1,1 @@
+Event attending app, backend and frontend
