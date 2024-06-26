@@ -42,7 +42,9 @@ const loginSubmit = async () => {
 
     const dataRes = await response.json();
     if (!response.ok) {
-      launchNoti(dataRes.message, 'red');
+
+      
+      launchNoti(dataRes, 'red');
     } else {
       const data = await fetch("http://localhost:3000/api/v1/attendees/e/" + dataRes.user.email);
       const res = await data.json();

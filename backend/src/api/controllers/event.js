@@ -36,7 +36,7 @@ const createEvent = async (req, res, next) => {
       description: req.body.description ? req.body.description : 'No description yet',
       location: req.body.location,
       owner: owner._id,
-      eventImg: req.file ? req.file.path : 'https://res-console.cloudinary.com/dn0z86xkf/thumbnails/v1/image/upload/v1717326485/dXNlclBpY3MvZGVmRXZlbnRfYWRwZDNy/drilldown' 
+      eventImg: req.file ? req.file.path : 'https://res.cloudinary.com/dn0z86xkf/image/upload/v1717326485/userPics/defEvent_adpd3r.png' 
   
     });
      const eventSaved = await newEvent.save();

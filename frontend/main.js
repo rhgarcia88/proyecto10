@@ -32,8 +32,8 @@ const initializeApp = async () => {
   addCardListeners();
   addLoginListener();
 
-  document.querySelector('.explore').addEventListener('click', () => location.reload());
-  document.querySelector('.logo-header').addEventListener('click', () => location.reload());
+  document.querySelector('.explore').addEventListener('click', () => changeScreen(0));
+  document.querySelector('.logo-header').addEventListener('click', () => changeScreen(0));
 
   if(attendee){
     const floatingPlusHTML = createFloatingPlus();
@@ -62,7 +62,11 @@ export const changeScreen = async (newScreen,extraData) => {
 
   switch (newScreen) {
     case 0:
-      location.reload();
+      const screenContainer = document.getElementById('screen-container');
+      const mainScreenHTML = await generateMainScreen();
+      screenContainer.innerHTML = mainScreenHTML;
+      addCardListeners();
+     // location.reload();
       break;
 
     case 1:

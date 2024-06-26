@@ -18,6 +18,7 @@
 .event-card:hover{
   transform: scale(.98);
   transition: all .5s ease;
+  z-index: 2;
 }
 .event-card>*{
   line-height: 0;
