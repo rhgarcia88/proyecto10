@@ -31,6 +31,7 @@ app.use("*",  (req,res,next) => {
   return res.status(404).json("Route not found");
  });
 
-app.listen(3000, ()=> {
-  console.log('http://localhost:3000');
-});
+ const port = process.env.PORT || 3000; 
+ app.listen(port, () => {
+   console.log(`Server running on port ${port}`);
+ });
