@@ -28,7 +28,7 @@ const getAllowedOrigins = () => {
 };
 // Configuración dinámica de CORS usando getAllowedOrigins()
 const corsOptions = {
-  origin:'https://www.eventsphere-omega.vercel.app/',
+  origin:'https://eventsphere-omega.vercel.app/',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
