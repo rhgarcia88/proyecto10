@@ -12,7 +12,7 @@ export const createSignup = () => {
     <div class="register-screen">
       <h2>Register</h2>
       <form id="register-form" action="/register" method="post" enctype="multipart/form-data">
-        <div class="form-group">
+        <div class="form-group-2">
           <input type="text" id="userName" name="userName" required placeholder="Username"/>
           <input type="email" id="email" name="email" required placeholder="Email"/>
         </div>

@@ -3,6 +3,7 @@ export const sleep = (ms) => {
 };
 
 export const getBaseUrl = () => {
-
-  return "https://proyecto10.vercel.app";
+ //return "http://localhost:3000"
+ return "https://proyecto10.vercel.app";
+ 
 }
