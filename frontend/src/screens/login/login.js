@@ -1,7 +1,7 @@
 import './login.css';
 import { createButton } from '../../components/standardButton/standardButton';
 import { launchNoti } from '../../components/notification/notification';
-import { sleep } from '../../utils';
+import { getBaseUrl, sleep } from '../../utils';
 import { addRegisterListener, createSignup } from '../signup/signup';
 
 export const loginScreen = () => {
@@ -30,9 +30,9 @@ export const loginScreen = () => {
 const loginSubmit = async () => {
   const email = document.querySelector("#email").value;
   const password = document.querySelector("#password").value;
-
+  const baseUrl = getBaseUrl();
   try {
-    const response = await fetch("http://localhost:3000/api/v1/users/login", {
+    const response = await fetch( `${baseUrl}/api/v1/users/login`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -46,7 +46,7 @@ const loginSubmit = async () => {
       
       launchNoti(dataRes, 'red');
     } else {
-      const data = await fetch("http://localhost:3000/api/v1/attendees/e/" + dataRes.user.email);
+      const data = await fetch(baseUrl + "/api/v1/attendees/e/" + dataRes.user.email);
       const res = await data.json();
 
       localStorage.setItem("user", JSON.stringify(dataRes));

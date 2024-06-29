@@ -1,6 +1,7 @@
 import { changeScreen } from '../../../main';
 import { createEventCard } from '../../components/event-card/eventCard';
 import { createButton } from '../../components/standardButton/standardButton';
+import { getBaseUrl } from '../../utils';
 import './userProfile.css';
 
 export const generateUserProfile = async(userId) => {
@@ -51,7 +52,8 @@ export const generateUserProfile = async(userId) => {
 export const getUserData = async(id) => { 
 
   try {
-    const userData = await fetch('http://localhost:3000/api/v1/attendees/'+id);
+    const baseUrl = getBaseUrl();
+    const userData = await fetch(baseUrl+'/api/v1/attendees/'+id);
     const user = await userData.json();
     return user;
   } catch (error) {

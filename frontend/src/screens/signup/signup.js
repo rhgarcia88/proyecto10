@@ -2,7 +2,7 @@ import './signup.css';
 import { createButton } from '../../components/standardButton/standardButton';
 import { launchNoti } from '../../components/notification/notification';
 import { addLoginListener, addLoginListeners, loginScreen } from '../login/login';
-import { sleep } from '../../utils';
+import { getBaseUrl, sleep } from '../../utils';
 import { changeScreen } from '../../../main';
 
 export const createSignup = () => {
@@ -55,8 +55,8 @@ const signUpSubmit = async () => {
     formData.append('email', email);
     formData.append('password', password);
     formData.append('profilePic', profilePic);
-
-    const response = await fetch("http://localhost:3000/api/v1/users/register", {
+    const baseUrl = getBaseUrl();
+    const response = await fetch(baseUrl+"/api/v1/users/register", {
       method: "POST",
       body: formData,
     });

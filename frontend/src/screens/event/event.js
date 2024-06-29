@@ -3,6 +3,7 @@ import { createButton } from '../../components/standardButton/standardButton';
 import { changeScreen, currentEventId } from '../../../main';
 import { launchNoti } from '../../components/notification/notification';
 import { getUserData } from '../userProfile/userProfile';
+import { getBaseUrl } from '../../utils';
 
 export const createEventScreen = async (idEvent) => {
   const ev = await getEvent(idEvent);
@@ -69,7 +70,8 @@ export const createEventScreen = async (idEvent) => {
 // Obtiene la información del evento desde la API
 const getEvent = async (idEvent) => {
   try {
-    const eventData = await fetch(`http://localhost:3000/api/v1/events/${idEvent}`);
+    const baseUrl = getBaseUrl();
+    const eventData = await fetch(`${baseUrl}/api/v1/events/${idEvent}`);
     const thisEvent = await eventData.json();
     return thisEvent;
   } catch (error) {
@@ -145,7 +147,8 @@ export const addEventInfoListeners = async () => {
 // Maneja la lógica de asistencia del usuario
 const attendAsUser = async (eventId, token, loggedAttendee) => {
   if (isAttending(loggedAttendee, eventId)) {
-    const response = await fetch(`http://localhost:3000/api/v1/attendees/unattend/${eventId}/${loggedAttendee.email}`, {
+    const baseUrl = getBaseUrl;
+    const response = await fetch(`${baseUrl}/api/v1/attendees/unattend/${eventId}/${loggedAttendee.email}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -163,8 +166,8 @@ const attendAsUser = async (eventId, token, loggedAttendee) => {
   } else {
     try {
       const payload = { eventId };
-
-      const response = await fetch(`http://localhost:3000/api/v1/users/attendees/${eventId}`, {
+      const baseUrl = getBaseUrl();
+      const response = await fetch(`${baseUrl}/api/v1/users/attendees/${eventId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
