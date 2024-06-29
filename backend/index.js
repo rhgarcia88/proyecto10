@@ -17,18 +17,10 @@ cloudinary.config({
   
 });
 
-const getAllowedOrigins = () => {
 
-  const origins = [
-    'https://eventsphere-omega.vercel.app',
-    'http://localhost:3000',
-  ];
-
-  return origins;
-};
 // Configuración dinámica de CORS usando getAllowedOrigins()
 const corsOptions = {
-  origin:'https://eventsphere-omega.vercel.app/',
+  origin:'*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
