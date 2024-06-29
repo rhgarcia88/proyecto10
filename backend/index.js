@@ -28,6 +28,7 @@ const getAllowedOrigins = () => {
 };
 // Configuración dinámica de CORS usando getAllowedOrigins()
 const corsOptions = {
+  mode:'no-cors',
   origin: getAllowedOrigins(),
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
