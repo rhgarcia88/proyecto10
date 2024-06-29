@@ -22,7 +22,8 @@ export const generateMainScreen = async () => {
 // Función asíncrona para obtener eventos
 const getEvents = async () => { 
   try {
-    const eventsData = await fetch(`${getBaseUrl}/api/v1/events`);
+    const baseUrl = getBaseUrl();
+    const eventsData = await fetch(`${baseUrl}/api/v1/events`);
     const events = await eventsData.json();
     
     let htmlResponse = '';
