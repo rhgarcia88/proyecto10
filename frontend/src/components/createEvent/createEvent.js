@@ -1,5 +1,5 @@
 import { changeScreen } from '../../../main';
-import { sleep } from '../../utils';
+import { getBaseUrl, sleep } from '../../utils';
 import { launchNoti } from '../notification/notification';
 import { createButton } from '../standardButton/standardButton';
 import './createEvent.css';
@@ -94,7 +94,7 @@ const createAEvent = async (event) => {
 
   // Enviar la solicitud POST
   try {
-    const response = await fetch('http://localhost:3000/api/v1/events/createEvent', {
+    const response = await fetch( `${getBaseUrl}/api/v1/events/createEvent`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`

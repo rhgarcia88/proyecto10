@@ -1,4 +1,5 @@
 import { createEventCard } from '../../components/event-card/eventCard';
+import { getBaseUrl } from '../../utils';
 import './events.css';
 
 // Función para generar la pantalla principal
@@ -21,7 +22,7 @@ export const generateMainScreen = async () => {
 // Función asíncrona para obtener eventos
 const getEvents = async () => { 
   try {
-    const eventsData = await fetch("http://localhost:3000/api/v1/events");
+    const eventsData = await fetch(`${getBaseUrl}/api/v1/events`);
     const events = await eventsData.json();
     
     let htmlResponse = '';
