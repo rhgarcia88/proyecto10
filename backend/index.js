@@ -26,7 +26,6 @@ const getAllowedOrigins = () => {
 
   return origins;
 };
-
 // Configuración dinámica de CORS usando getAllowedOrigins()
 const corsOptions = {
   origin: getAllowedOrigins(),
