@@ -147,7 +147,7 @@ export const addEventInfoListeners = async () => {
 // Maneja la lógica de asistencia del usuario
 const attendAsUser = async (eventId, token, loggedAttendee) => {
   if (isAttending(loggedAttendee, eventId)) {
-    const baseUrl = getBaseUrl;
+    const baseUrl = getBaseUrl();
     const response = await fetch(`${baseUrl}/api/v1/attendees/unattend/${eventId}/${loggedAttendee.email}`, {
       method: 'PUT',
       headers: {
@@ -157,11 +157,23 @@ const attendAsUser = async (eventId, token, loggedAttendee) => {
     });
 
     if (response.ok) {
-      const data = await response.json();
-      launchNoti('Unattended!');
+      try {
+        const data = await response.json();
+        console.log(data);
+        launchNoti('Unattended!');
+      } catch (error) {
+        console.log('Error parsing JSON:', error);
+        launchNoti('Unattended, but response was not JSON');
+      }
     } else {
-      const errorData = await response.json();
-      launchNoti('Error unattending the event', 'red');
+      try {
+        const errorData = await response.json();
+        console.log(errorData);
+        launchNoti('Error unattending the event', 'red');
+      } catch (error) {
+        console.log('Error parsing JSON:', error);
+        launchNoti('Error unattending the event and response was not JSON', 'red');
+      }
     }
   } else {
     try {
@@ -177,17 +189,30 @@ const attendAsUser = async (eventId, token, loggedAttendee) => {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        launchNoti('Attending!');
+        try {
+          const data = await response.json();
+          console.log(data);
+          launchNoti('Attending!');
+        } catch (error) {
+          console.log('Error parsing JSON:', error);
+          launchNoti('Attending, but response was not JSON');
+        }
       } else {
-        const errorData = await response.json();
-        launchNoti('Error attending the event', 'red');
+        try {
+          const errorData = await response.json();
+          console.log(errorData);
+          launchNoti('Error attending the event', 'red');
+        } catch (error) {
+          console.log('Error parsing JSON:', error);
+          launchNoti('Error attending the event and response was not JSON', 'red');
+        }
       }
     } catch (error) {
+      console.log('Fetch error:', error);
       launchNoti('Error attending', 'red');
     }
   }
-}
+};
 
 // Verifica si el usuario está asistiendo al evento
 const isAttending = (loggedAttendee, eventId) => {
