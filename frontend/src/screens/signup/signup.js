@@ -56,7 +56,7 @@ const signUpSubmit = async () => {
     formData.append('password', password);
     formData.append('profilePic', profilePic);
     const baseUrl = getBaseUrl();
-    const response = await fetch(baseUrl+"/api/v1/users/register", {
+    const response = await fetch(`${baseUrl}/api/v1/users/register`, {
       method: "POST",
       body: formData,
     });
@@ -65,7 +65,7 @@ const signUpSubmit = async () => {
       launchNoti('Successful!', 'green');
       document.querySelector(".register-button").disabled = true;
       await sleep(1000);
-      changeScreen(0);
+      location.reload();
     } else {
       const errorData = await response.json();
       console.error('Error del backend:', errorData);

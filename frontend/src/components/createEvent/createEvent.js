@@ -45,7 +45,7 @@ function getTodayDate() {
 function compareDates(date1, date2) {
   // Función para convertir una fecha en formato DD/MM/YYYY a un objeto Date
   function parseDate(dateString) {
-    const parts = dateString.split('-');
+    const parts = dateString.split('/');
     const year = parseInt(parts[0], 10);
     const month = parseInt(parts[1], 10) - 1; // Los meses en JavaScript son 0-indexados
     const day = parseInt(parts[2], 10);
@@ -83,18 +83,18 @@ const createAEvent = async (event) => {
   // Crear FormData y añadir los datos del formulario
   const formData = new FormData();
   formData.append('title', title);
-  formData.append('date', date);
+  formData.append('date', date.split('-').reverse().join('/'));
   formData.append('description', description);
   formData.append('location', location);
   formData.append('eventImg', eventImg);
 
  const token = JSON.parse(localStorage.getItem('user')).token;
-
+const baseUrl = getBaseUrl();
 
 
   // Enviar la solicitud POST
   try {
-    const response = await fetch( `${getBaseUrl}/api/v1/events/createEvent`, {
+    const response = await fetch( `${baseUrl}/api/v1/events/createEvent`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -106,6 +106,7 @@ const createAEvent = async (event) => {
       document.querySelector('.create-event-btn').disabled = true;
       launchNoti('Event created successfully!');
       await sleep(500);
+      document.querySelector('#create-event-overlay').click();
       changeScreen(0);
     } else {
       const errorData = await response.json();
