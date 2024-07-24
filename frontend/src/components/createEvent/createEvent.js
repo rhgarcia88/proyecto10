@@ -1,5 +1,6 @@
 import { changeScreen } from '../../../main';
 import { getBaseUrl, sleep } from '../../utils';
+import { createLoader, destroyLoader } from '../loader/loader';
 import { launchNoti } from '../notification/notification';
 import { createButton } from '../standardButton/standardButton';
 import './createEvent.css';
@@ -94,6 +95,7 @@ const baseUrl = getBaseUrl();
 
   // Enviar la solicitud POST
   try {
+    createLoader();
     const response = await fetch( `${baseUrl}/api/v1/events/createEvent`, {
       method: 'POST',
       headers: {
@@ -101,7 +103,7 @@ const baseUrl = getBaseUrl();
       },
       body: formData,
     });
-
+    destroyLoader();
     if (response.ok) {
       document.querySelector('.create-event-btn').disabled = true;
       launchNoti('Event created successfully!');

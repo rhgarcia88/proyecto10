@@ -1,4 +1,5 @@
 import { createEventCard } from '../../components/event-card/eventCard';
+import { createLoader, destroyLoader } from '../../components/loader/loader';
 import { getBaseUrl } from '../../utils';
 import './events.css';
 
@@ -23,9 +24,10 @@ export const generateMainScreen = async () => {
 const getEvents = async () => { 
   try {
     const baseUrl = getBaseUrl();
+    createLoader();
     const eventsData = await fetch(`${baseUrl}/api/v1/events`);
     const events = await eventsData.json();
-    
+    destroyLoader();
     let htmlResponse = '';
     for (const event of events) {
       htmlResponse += createEventCard(event.title, event.date, event.eventImg, event._id);

@@ -3,6 +3,7 @@ import { createButton } from '../../components/standardButton/standardButton';
 import { launchNoti } from '../../components/notification/notification';
 import { getBaseUrl, sleep } from '../../utils';
 import { addRegisterListener, createSignup } from '../signup/signup';
+import { createLoader, destroyLoader } from '../../components/loader/loader';
 
 export const loginScreen = () => {
   const container = document.createElement('div');
@@ -26,12 +27,13 @@ export const loginScreen = () => {
   `;
   return container;
 };
-
+ 
 const loginSubmit = async () => {
   const email = document.querySelector("#email").value;
   const password = document.querySelector("#password").value;
   const baseUrl = getBaseUrl();
   try {
+    createLoader();
     const response = await fetch( `${baseUrl}/api/v1/users/login`, {
       headers: {
         "Content-Type": "application/json",
@@ -41,14 +43,16 @@ const loginSubmit = async () => {
     });
 
     const dataRes = await response.json();
+    destroyLoader();
     if (!response.ok) {
 
       
       launchNoti(dataRes, 'red');
     } else {
+      createLoader();
       const data = await fetch(baseUrl + "/api/v1/attendees/e/" + dataRes.user.email);
       const res = await data.json();
-
+      destroyLoader();
       localStorage.setItem("user", JSON.stringify(dataRes));
       localStorage.setItem("attendee", JSON.stringify(res));
       launchNoti("Welcome " + dataRes.user.userName + "!", '');

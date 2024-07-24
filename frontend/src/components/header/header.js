@@ -15,7 +15,7 @@ export const generateHeader = () => {
             <div class="logo-header"> 
               <img src="/LONG-LOGO.png"/>
             </div>
-            <div>
+             <div>
               ${createButton('button', 'Explore','explore')}
             </div>
             <div>

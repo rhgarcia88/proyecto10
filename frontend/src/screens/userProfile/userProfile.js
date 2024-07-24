@@ -1,5 +1,6 @@
 import { changeScreen } from '../../../main';
 import { createEventCard } from '../../components/event-card/eventCard';
+import { createLoader, destroyLoader } from '../../components/loader/loader';
 import { createButton } from '../../components/standardButton/standardButton';
 import { getBaseUrl } from '../../utils';
 import './userProfile.css';
@@ -53,8 +54,10 @@ export const getUserData = async(id) => {
 
   try {
     const baseUrl = getBaseUrl();
+    createLoader();
     const userData = await fetch(baseUrl+'/api/v1/attendees/'+id);
     const user = await userData.json();
+    destroyLoader();
     return user;
   } catch (error) {
     

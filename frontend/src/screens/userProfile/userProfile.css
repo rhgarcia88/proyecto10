@@ -19,7 +19,9 @@
 .profile-picture{
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 14vw;
+  height: 14vw;
+
   overflow: hidden;
  
 }
@@ -67,5 +69,8 @@ text-align: start;
     justify-content: space-between;
 flex-direction: column;
   
+  }
+  .logout{
+    width: 120%;
   }
 }

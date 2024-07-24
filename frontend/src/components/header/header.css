@@ -29,10 +29,10 @@ width:50%;
 display: flex;
 }
 
-header div:nth-child(3){
+header >div:nth-child(3){
   justify-content: flex-end;
 }
-header div:nth-child(2){
+header > div:nth-child(2){
  width: 70%;
 }
 
@@ -61,15 +61,15 @@ header div:nth-child(2){
 
     width: 35%;
   }
-  header div:nth-child(3){
+  header > div:nth-child(3){
     width: 50%;
  
    }
-   header div:nth-child(2){
+   header > div:nth-child(2){
     width: 50%;
     justify-content: flex-start;
    }
-   header div:nth-child(1){
+   header > div:nth-child(1){
     display: none;
   }
   .explore{

@@ -4,6 +4,7 @@ import { launchNoti } from '../../components/notification/notification';
 import { addLoginListener, addLoginListeners, loginScreen } from '../login/login';
 import { getBaseUrl, sleep } from '../../utils';
 import { changeScreen } from '../../../main';
+import { createLoader, destroyLoader } from '../../components/loader/loader';
 
 export const createSignup = () => {
   const container = document.createElement('div');
@@ -56,20 +57,20 @@ const signUpSubmit = async () => {
     formData.append('password', password);
     formData.append('profilePic', profilePic);
     const baseUrl = getBaseUrl();
+    createLoader();
     const response = await fetch(`${baseUrl}/api/v1/users/register`, {
       method: "POST",
       body: formData,
     });
-
+    destroyLoader();
     if (response.ok) {
-      launchNoti('Successful!', 'green');
       document.querySelector(".register-button").disabled = true;
-      await sleep(1000);
-      location.reload();
+      await loginFromSignup(email, password);
+    
     } else {
       const errorData = await response.json();
       console.error('Error del backend:', errorData);
-      launchNoti(errorData.message, 'red');
+      launchNoti(errorData, 'red');
     }
   } catch (error) {
     console.error('Error en la solicitud:', error);
@@ -148,5 +149,43 @@ const addRegisterListener = () => {
     console.error('File input or file name display element not found in the DOM.');
   }
 };
+
+
+const loginFromSignup = async(email, password) => {
+  const baseUrl = getBaseUrl();
+  try {
+    createLoader();
+    const response = await fetch( `${baseUrl}/api/v1/users/login`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    });
+
+    const dataRes = await response.json();
+    destroyLoader();
+    if (!response.ok) {
+
+      launchNoti(dataRes, 'red');
+    } else {
+      createLoader();
+      const data = await fetch(baseUrl + "/api/v1/attendees/e/" + dataRes.user.email);
+      const res = await data.json();
+      destroyLoader();
+      localStorage.setItem("user", JSON.stringify(dataRes));
+      localStorage.setItem("attendee", JSON.stringify(res));
+      launchNoti("Welcome " + dataRes.user.userName + "!", '');
+      await sleep(1000);
+      location.reload();
+    }
+  } catch (error) {
+    console.error(error);
+    console.log(error);
+    console.error(error.json);
+    console.log(error.json);
+    launchNoti("An error occurred during login", 'red');
+  }
+}
 
 export { addRegisterListener, signUp };

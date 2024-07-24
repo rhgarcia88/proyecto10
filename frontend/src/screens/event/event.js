@@ -1,9 +1,10 @@
 import './event.css';
 import { createButton } from '../../components/standardButton/standardButton';
-import { changeScreen, currentEventId } from '../../../main';
+import { changeScreen, currentEventId, getCurrentEventId } from '../../../main';
 import { launchNoti } from '../../components/notification/notification';
 import { getUserData } from '../userProfile/userProfile';
 import { getBaseUrl } from '../../utils';
+import { createLoader, destroyLoader } from '../../components/loader/loader';
 
 export const createEventScreen = async (idEvent) => {
   const ev = await getEvent(idEvent);
@@ -70,9 +71,11 @@ export const createEventScreen = async (idEvent) => {
 // Obtiene la información del evento desde la API
 const getEvent = async (idEvent) => {
   try {
+    createLoader();
     const baseUrl = getBaseUrl();
     const eventData = await fetch(`${baseUrl}/api/v1/events/${idEvent}`);
     const thisEvent = await eventData.json();
+    destroyLoader();
     return thisEvent;
   } catch (error) {
     return `<p>Error loading event</p>`;
@@ -148,6 +151,7 @@ export const addEventInfoListeners = async () => {
 const attendAsUser = async (eventId, token, loggedAttendee) => {
   if (isAttending(loggedAttendee, eventId)) {
     const baseUrl = getBaseUrl();
+    createLoader();
     const response = await fetch(`${baseUrl}/api/v1/attendees/unattend/${eventId}/${loggedAttendee.email}`, {
       method: 'PUT',
       headers: {
@@ -155,9 +159,10 @@ const attendAsUser = async (eventId, token, loggedAttendee) => {
         'Authorization': `Bearer ${token}`,
       }
     });
-
+    destroyLoader();
     if (response.ok) {
       try {
+        visualUpdateAttendes();
         const data = await response.json();
         console.log(data);
         launchNoti('Unattended!');
@@ -179,6 +184,7 @@ const attendAsUser = async (eventId, token, loggedAttendee) => {
     try {
       const payload = { eventId };
       const baseUrl = getBaseUrl();
+      createLoader()
       const response = await fetch(`${baseUrl}/api/v1/users/attendees/${eventId}`, {
         method: 'PUT',
         headers: {
@@ -187,10 +193,13 @@ const attendAsUser = async (eventId, token, loggedAttendee) => {
         },
         body: JSON.stringify(payload),
       });
-
+      destroyLoader();
       if (response.ok) {
         try {
+          visualUpdateAttendes();
+          createLoader();
           const data = await response.json();
+          destroyLoader();
           console.log(data);
           launchNoti('Attending!');
         } catch (error) {
@@ -226,4 +235,23 @@ const isAttending = (loggedAttendee, eventId) => {
     }
   }
   return false;
+}
+
+
+const visualUpdateAttendes = async() => {
+
+  const ev = await getEvent(getCurrentEventId());
+  const attendeesList = ev.attendees;
+  const attendees = fillAttendees(attendeesList);
+
+  const container = document.querySelector('.attendees-container');
+  container.innerHTML = attendees;
+
+  document.querySelectorAll('[attendee-id]').forEach(element => {
+    element.addEventListener('click', () => {
+      const attendeeId = element.getAttribute('attendee-id');
+        changeScreen(2, attendeeId);
+
+    });
+});
 }
