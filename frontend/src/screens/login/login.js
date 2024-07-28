@@ -4,6 +4,7 @@ import { launchNoti } from '../../components/notification/notification';
 import { getBaseUrl, sleep } from '../../utils';
 import { addRegisterListener, createSignup } from '../signup/signup';
 import { createLoader, destroyLoader } from '../../components/loader/loader';
+import { createFormField } from '../../components/form-group/formGroup';
 
 export const loginScreen = () => {
   const container = document.createElement('div');
@@ -12,12 +13,8 @@ export const loginScreen = () => {
     <div class="login-screen">
       <h2>Login</h2>
       <form id="login-form" action="/login" method="post">
-        <div class="form-group">
-          <input type="email" id="email" name="email" required placeholder="Email"/>
-        </div>
-        <div class="form-group">
-          <input type="password" id="password" name="password" required placeholder="Password"/>
-        </div>
+        ${createFormField('email','email','email','Email', 'required')}
+         ${createFormField('password','password','password','Password', 'required')}
         ${createButton('submit', 'Login', 'login-button')}
       </form>
       <div class="register-link-container">

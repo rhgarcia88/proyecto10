@@ -9,5 +9,5 @@ const storage = new CloudinaryStorage({
     allowedFormats: ["jpg","jpeg","png","gif"]
   }
 });
-const upload = multer({storage: storage});
+const upload = multer({storage});
 module.exports = upload;

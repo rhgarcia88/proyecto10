@@ -21,14 +21,5 @@ const isAuth = async (req, res, next) => {
   }
 }
 
-const isAdmin = async (req, res, next) => {
- 
-  if (req.user.rol === "Admin") {
-    next();
-} else {
-    return res.status(400).json("No eres Admin");
-}
-
-}
 
 module.exports = {isAuth}

@@ -7,7 +7,6 @@ import { notification } from './src/components/notification/notification';
 import { addCardListeners } from './src/components/event-card/eventCard';
 import { generateUserProfile, logOutListener } from './src/screens/userProfile/userProfile';
 import { addFloatingPlusListener, createFloatingPlus } from './src/components/floatingPlus/floatingPlus';
-import { createLoader, destroyLoader } from './src/components/loader/loader';
 
 
 export let currentEventId;

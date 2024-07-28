@@ -15,9 +15,9 @@ export const createSignup = () => {
       <form id="register-form" action="/register" method="post" enctype="multipart/form-data">
         <div class="form-group-2">
           <input type="text" id="userName" name="userName" required placeholder="Username"/>
-          <input type="email" id="email" name="email" required placeholder="Email"/>
+          <input type="email" id="email" name="email" required placeholder="Email"/>  
         </div>
-        <div class="form-group">
+        <div class="form-group"> 
           <input type="password" id="password" name="password" required placeholder="Password"/>
           <input type="password" id="double-password" name="password" required placeholder="Repeat Password"/>
         </div>
