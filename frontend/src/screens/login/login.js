@@ -14,7 +14,7 @@ export const loginScreen = () => {
       <h2>Login</h2>
       <form id="login-form" action="/login" method="post">
         ${createFormField('email','email','email','Email', 'required')}
-         ${createFormField('password','password','password','Password', 'required')}
+        ${createFormField('password','password','password','Password', 'required')}
         ${createButton('submit', 'Login', 'login-button')}
       </form>
       <div class="register-link-container">

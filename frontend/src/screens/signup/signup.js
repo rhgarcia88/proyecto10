@@ -3,7 +3,6 @@ import { createButton } from '../../components/standardButton/standardButton';
 import { launchNoti } from '../../components/notification/notification';
 import { addLoginListener, addLoginListeners, loginScreen } from '../login/login';
 import { getBaseUrl, sleep } from '../../utils';
-import { changeScreen } from '../../../main';
 import { createLoader, destroyLoader } from '../../components/loader/loader';
 
 export const createSignup = () => {
@@ -17,11 +16,11 @@ export const createSignup = () => {
           <input type="text" id="userName" name="userName" required placeholder="Username"/>
           <input type="email" id="email" name="email" required placeholder="Email"/>  
         </div>
-        <div class="form-group"> 
+        <div class="form-group-2"> 
           <input type="password" id="password" name="password" required placeholder="Password"/>
           <input type="password" id="double-password" name="password" required placeholder="Repeat Password"/>
         </div>
-        <div class="form-group">
+        <div class="form-group-2">
           <div class="file-upload-container">
             <label class="custom-file-upload" for="profile-pic">Profile Image</label>
             <input type="file" id="profile-pic" name="profile-pic" accept=".jpg, .jpeg, .png" placeholder="Profile Picture"/>

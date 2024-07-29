@@ -1,5 +1,6 @@
 import { changeScreen } from '../../../main';
 import { getBaseUrl, sleep } from '../../utils';
+import { createFormField } from '../form-group/formGroup';
 import { createLoader, destroyLoader } from '../loader/loader';
 import { launchNoti } from '../notification/notification';
 import { createButton } from '../standardButton/standardButton';
@@ -14,19 +15,15 @@ export const createEventModal = () => {
       <form id="create-event-form" method="post" enctype="multipart/form-data">
         <h2 id="create-event-header">Create Event</h2>
         <h4 id="create-event-subtitle">Fill in the gaps to create a new event</h4>
+         ${createFormField('text','event-title','title','Title*','required')}
         <div class="form-group">
-          <input type="text" id="event-title" name="title" placeholder="Title*" required>
           <input type="date" id="date" name="date" placeholder="Date" min="${today}" required>
         </div>
         <div class="form-group">
           <textarea id="description-form" name="description" placeholder="Description" maxlength="500"></textarea>
         </div>
-        <div class="form-group">
-          <input type="text" id="location" name="location" placeholder="Location*" required>
-        </div>
-        <div class="form-group">
-          <input type="file" id="eventImg" name="eventImg">
-        </div>
+        ${createFormField('text','location','location','Location*','required')}
+          ${createFormField('file','eventImg','eventImg')}
         <div>
           ${createButton('submit', 'Create Event', 'green-btn create-event-btn')}
         </div>
